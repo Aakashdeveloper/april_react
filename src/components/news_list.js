@@ -1,36 +1,24 @@
 import React from 'react';
 
-
-const newsList = (props) =>{
-
-    console.log(props)
+const newsList =(props)=>{
+    console.log("news is coming"+props);
 
     const items = props.news.map((item)=>{
         return(
-            <div>
-                <h2>{item.title}</h2>
-                <div>
-                    {item.feed}
+           
+                <div key={item.id}>
+                    <h3>{item.title}</h3>
+                    <div>
+                        {item.feed}
+                    </div>
                 </div>
-            </div>
+            
         )
     })
 
-    return (
-        <div>
-            {items}
-        </div>
+    return(
+        <div>{items}</div>
     )
 }
 
 export default newsList;
-
-
-
-/*
-function add(a,b){
-    return a+b
-}
-
-var add = (a,b)=> return a+b
-*/

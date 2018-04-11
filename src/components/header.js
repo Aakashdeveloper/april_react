@@ -1,59 +1,40 @@
-import React, {Component} from 'react';
+import React,{Component} from 'react';
 
-class Header extends React.Component{
+class Header extends Component{
+
     constructor(props){
         super(props);
 
         this.state ={
-            keyWord:'',
-            companyName:"FaceBook"
+            keyword:'',
+            title:'This Is React Demo'
         }
+
+        console.log(props)
     }
 
     inputChange(event){
-        this.setState({keyWord:event.target.value})
+        console.log({keyword:event.target.value})
+        this.setState({keywords:event.target.value})
+        this.props.newsSearch(event.target.value)
     }
 
     render(){
+
+        const styles ={
+            header:{
+                background:'blue'
+            }
+        }
+
         return(
-            <center>
-                <header>
-                    <div className="logo"
-                    onClick={()=>{console.log("logo is clicked")}}><h3>Logo</h3></div>
-                    <input type="text" onChange={this.inputChange.bind(this)}/>
-                    <h2>{this.state.keyWord}</h2>
-                </header>
-            </center>
+            <header>
+            <button className="btn btn-primary" onClick={()=> console.log("clicked")}>Click</button>
+            <input onChange={this.inputChange.bind(this)}/>
+            <div>{this.state.keyword}</div>
+            </header>
         )
     }
 }
 
-
 export default Header;
-
-
-
-
-/*
-function add(a,b){
-    return a+b
-}
-
-var add = (a,b) => return a+b
-
-
-const Header = ()=>{
-    return <div>Header</div>
-}*/
- /*const styles ={
-            header:{
-                background:'skyblue'
-            },
-            logo:{
-                textAlign:'center'
-            }
-            <header style={styles.header}>
-                <div style={styles.logo}>Logo</div>
-                <input type="text"/>
-            </header>
-        }*/

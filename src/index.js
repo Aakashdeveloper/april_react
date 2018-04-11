@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import Header from './components/header';
@@ -10,35 +10,46 @@ class App extends Component{
         super(props);
 
         this.state={
-            news:JSON
+            news:JSON,
+            filtered:JSON
         }
+    }
+
+    filterNews(keywords){
+        console.log(keywords)
+        let filtered = this.state.news.filter((item)=>{
+            return item.title.indexOf(keywords)>-1;
+        })
+
+        console.log(filtered);
+        this.setState({filtered:filtered})
     }
 
     render(){
         return(
             <div>
-                <Header/>
-                <NewsList news={this.state.news}/>
+                <Header newsSearch={keywords=>this.filterNews(keywords)}/>
+                <NewsList news={this.state.filtered}/>
             </div>
         )
     }
 }
 
-ReactDOM.render(<App/>,document.getElementById('root'))
-
-
-/*
-functional component-light faster maitain state
-class based-> heavy with extra function
-JXS
-
-
-const App = () =>{
-
+/*const App=() =>{
     console.log(JSON)
-    return <div>
-                <Header/>
-                <h1>Hello this is react</h1>
-           </div>     
+    return(
+    <div>
+        <Header />
+        
+    </div>
+    )
+    
+}*/
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+
+/*function add(a,b){
+    return a+b
 }
-*/
+var add =(a,b)=> a+b*/
